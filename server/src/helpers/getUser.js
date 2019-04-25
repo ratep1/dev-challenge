@@ -1,8 +1,6 @@
-import fs from 'fs';
-import util from 'util';
-const readFile = util.promisify(fs.readFile);
+import getUsers from '../storage/users';
 
 export default async function getUser(id) {
-  const data = await readFile(`./data/users/${id}.json`, 'utf8');
-  return JSON.parse(data);
+  const users = await getUsers();
+  return users[id];
 }

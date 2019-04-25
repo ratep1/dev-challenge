@@ -1,8 +1,9 @@
 type Query {
-  user(id: ID!): User!
-  users: [User!]
+  user(id: ID! name: String): User!
+  users(name: String): [User!]
   company(id: ID!): Company!
   companies: [Company!]
+  addresses: [Address]
 }
 
 type Mutation {
