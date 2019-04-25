@@ -25,6 +25,14 @@ const query = gql`
       name
       email
       image
+      company {
+        id
+        name
+      }
+      address {
+        city
+        zipCode
+      }
     }
   }
 `;
@@ -42,6 +50,7 @@ export default class UsersScene extends PureComponent {
             }
 
             if (error) {
+              console.log(error);
               return <ErrorScene message={error.message} />;
             }
 
@@ -54,7 +63,7 @@ export default class UsersScene extends PureComponent {
                       navigation.navigate('UserScene', { id: item.id })
                     }
                   >
-                    <UserList user={item} />
+                    <UserList user={item} navigation={navigation}/>
                   </TouchableOpacity>
                 )}
               />
