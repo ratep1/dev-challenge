@@ -4,9 +4,12 @@ const start = Date.now();
 
 import graphql from './src/graphql';
 
+import initialize from './src/storage/initialize';
+
 // Initialize app
 const port = 5000;
 const app = new Koa();
+initialize();
 
 graphql.applyMiddleware({ app });
 
