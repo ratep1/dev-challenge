@@ -1,16 +1,9 @@
-import fs from 'fs';
-import util from 'util';
-
-const readDir = util.promisify(fs.readdir);
-
-import { getCompany } from '../../../helpers';
+import getCompanies from '../../../storage/companies';
 
 export default async function companies(root, args, { ctx }, info) {
-  const files = await readDir('./data/companies');
+  const companies = await getCompanies();
 
-  const companies = files
-    .filter(filename => filename.includes('.json'))
-    .map(filename => getCompany(filename.replace('.json', '')));
+  let response = Object.values(companies);
 
-  return companies;
+  return response;
 }
